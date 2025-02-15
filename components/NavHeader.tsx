@@ -18,7 +18,7 @@ function NavHeader() {
         <div className="flex items-center gap-3">
           <Logo className="text-gray-800" size={32} />
           <h1 className="text-2xl font-semibold text-gray-800">
-            SingleStore Prime Radian
+            Prime Radian
           </h1>
         </div>
         <ul
