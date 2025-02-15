@@ -4,10 +4,11 @@ import React, { useState, ReactElement } from 'react';
 import { fetchWithAuth } from '../utils/api';
 
 interface SearchResult {
-  text: string;
-  score: number;
-  document_id: string;
-  chunk_id: string;
+  content: string;
+  vector_score: number;
+  text_score: number;
+  combined_score: number;
+  doc_id: number;
   entities: Array<{
     name: string;
     type: string;
@@ -43,6 +44,9 @@ export default function SearchForm(): ReactElement {
       const searchData = { query: query.trim(), top_k: 5 };
       const response = await fetchWithAuth('/kag-search', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(searchData),
       });
 
@@ -214,15 +218,15 @@ export default function SearchForm(): ReactElement {
                   <div key={index} className="border border-twisty-gray-200 rounded-twisty-md p-4">
                     <div className="flex justify-between items-start mb-2">
                       <div className="text-sm text-twisty-gray-500">
-                        Document ID: {result.document_id}
+                        Document ID: {result.doc_id}
                       </div>
                       <div className="text-sm">
                         <span className="text-twisty-primary">
-                          Score: {(result.score * 100).toFixed(1)}%
+                          Score: {(result.combined_score * 100).toFixed(1)}%
                         </span>
                       </div>
                     </div>
-                    <p className="text-twisty-gray-700">{result.text}</p>
+                    <p className="text-twisty-gray-700">{result.content}</p>
                   </div>
                 ))}
               </div>
