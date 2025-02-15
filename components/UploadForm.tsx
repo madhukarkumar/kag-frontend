@@ -3,7 +3,7 @@
 import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { ProcessingStatus } from './ProcessingStatus';
-import { fetchWithAuth } from '../utils/fetchWithAuth';
+import { fetchWithAuth } from '../utils/api';
 
 export default function UploadForm() {
   const [isDragging, setIsDragging] = useState(false);
