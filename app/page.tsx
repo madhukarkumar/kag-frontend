@@ -37,7 +37,6 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<KBStats | null>(null);
-  const [uploadingFile, setUploadingFile] = useState(false);
   const [taskId, setTaskId] = useState<string | null>(null);
 
   const fetchKBData = useCallback(async () => {
@@ -63,7 +62,6 @@ export default function HomePage() {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    setUploadingFile(true);
     const formData = new FormData();
     formData.append('file', file);
 

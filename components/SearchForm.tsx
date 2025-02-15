@@ -1,25 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState, ReactElement } from 'react';
 import { fetchWithAuth } from '../utils/api';
 
 interface SearchResult {
-  doc_id: number;
-  content: string;
-  vector_score: number;
-  text_score: number;
-  combined_score: number;
+  text: string;
+  score: number;
+  document_id: string;
+  chunk_id: string;
   entities: Array<{
-    entity_id: number;
     name: string;
-    category: string;
-    description?: string;
-  }>;
-  relationships: Array<{
-    source_entity_id: number;
-    target_entity_id: number;
-    relation_type: string;
-    metadata?: Record<string, any>;
+    type: string;
+    description: string;
   }>;
 }
 
@@ -30,7 +22,7 @@ interface SearchResponse {
   execution_time: number;
 }
 
-export default function SearchForm() {
+export default function SearchForm(): ReactElement {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -155,7 +147,7 @@ export default function SearchForm() {
                         
                         return (
                           <div key={index} className="mb-4">
-                            {lines.reduce((acc: JSX.Element[], line, lineIndex) => {
+                            {lines.reduce((acc: ReactElement[], line, lineIndex) => {
                               const isBulletPoint = line.startsWith('- ');
                               const isNumberedPoint = line.match(/^\d+\.\s/);
                               
@@ -222,15 +214,15 @@ export default function SearchForm() {
                   <div key={index} className="border border-twisty-gray-200 rounded-twisty-md p-4">
                     <div className="flex justify-between items-start mb-2">
                       <div className="text-sm text-twisty-gray-500">
-                        Document ID: {result.doc_id}
+                        Document ID: {result.document_id}
                       </div>
                       <div className="text-sm">
                         <span className="text-twisty-primary">
-                          Score: {(result.combined_score * 100).toFixed(1)}%
+                          Score: {(result.score * 100).toFixed(1)}%
                         </span>
                       </div>
                     </div>
-                    <p className="text-twisty-gray-700">{result.content}</p>
+                    <p className="text-twisty-gray-700">{result.text}</p>
                   </div>
                 ))}
               </div>

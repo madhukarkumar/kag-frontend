@@ -5,7 +5,11 @@ import { useRouter } from 'next/navigation';
 import { ProcessingStatus } from './ProcessingStatus';
 import { fetchWithAuth } from '../utils/api';
 
-export default function UploadForm() {
+interface UploadFormProps {
+  onUploadComplete?: () => void;
+}
+
+export default function UploadForm({ onUploadComplete }: UploadFormProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -84,12 +88,13 @@ export default function UploadForm() {
 
       const data = await response.json();
       setTaskId(data.task_id);
+      onUploadComplete?.();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setUploading(false);
     }
-  }, [file]);
+  }, [file, onUploadComplete]);
 
   const handleProcessingComplete = useCallback(() => {
     router.push('/kb');
