@@ -90,7 +90,7 @@ export default function HomePage() {
           {/* Left Column */}
           <div className="space-y-8">
             {/* Stats Section */}
-            <section className="bg-white rounded-twisty-lg p-6 shadow-twisty-md">
+            <section className="bg-white rounded-twisty-lg p-6 shadow-twisty-md shadow-xl">
               <h2 className="text-twisty-xl font-twisty font-semibold text-twisty-secondary mb-6">
                 Knowledge Base Statistics
               </h2>
@@ -131,7 +131,7 @@ export default function HomePage() {
             </section>
 
             {/* Documents Section */}
-            <section className="bg-white rounded-twisty-lg p-6 shadow-twisty-md">
+            <section className="bg-white rounded-twisty-lg p-6 shadow-twisty-md shadow-xl">
               <h2 className="text-twisty-xl font-twisty font-semibold text-twisty-secondary mb-6">
                 Documents
               </h2>
@@ -196,7 +196,7 @@ export default function HomePage() {
             </section>
 
             {/* Upload Section */}
-            <section className="bg-white rounded-twisty-lg p-6 shadow-twisty-md">
+            <section className="bg-white rounded-twisty-lg p-6 shadow-twisty-md shadow-xl">
               <h2 className="text-twisty-xl font-twisty font-semibold text-twisty-secondary mb-6">
                 Upload Document
               </h2>
@@ -223,7 +223,7 @@ export default function HomePage() {
           {/* Right Column */}
           <div className="space-y-8">
             {/* Search Section */}
-            <section className="bg-white rounded-twisty-lg p-6 shadow-twisty-md">
+            <section className="bg-white rounded-twisty-lg p-6 shadow-twisty-md shadow-xl">
               <h2 className="text-twisty-xl font-twisty font-semibold text-twisty-secondary mb-6">
                 Ask Knowledge Base
               </h2>
@@ -231,11 +231,11 @@ export default function HomePage() {
             </section>
 
             {/* Knowledge Graph Section */}
-            <section className="bg-white rounded-lg p-6 shadow-md">
+            <section className="bg-white rounded-lg p-6 shadow-xl">
               <h2 className="text-xl font-semibold text-gray-800 mb-4">
                 Knowledge Graph
               </h2>
-              <div className="h-[500px]">
+              <div className="h-[600px] overflow-hidden">
                 <KnowledgeGraph />
               </div>
             </section>
